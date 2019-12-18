@@ -15,3 +15,12 @@ awk '$2<75 {printf "%s\t%s\n", $0, "REORDER";} $2>=75 {print $0;}' testfile
 awk '/^ *$/ {x=x+1;} END {print x;}' testfile
 
 awk 'BEGIN {FS=":"} {print $1;}' /etc/passwd
+
+#进程号小于100的进程
+ps aux | awk '$2<100 {print $0}'
+
+#当前系统的进程数
+ps aux | awk '$2>0 {num=num+1} END {print num}'
+
+# 当前系统root用户的进程数
+ps aux | awk '$2>0 && $1=="root"{num=num+1} END {print num}'
